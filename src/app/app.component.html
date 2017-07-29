@@ -1,0 +1,49 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+Contact {{title}}
+  </h1>
+  
+</div>
+<h2></h2>
+<div class="container">
+<div class="jumbotron">
+<div class="row">
+
+<div class="col-md-4">
+<label for="name">Name</label>
+<input id="name" type="text" name="name">
+</div>
+
+<div class="col-md-4">
+<label for="email">Email</label>
+<input type="email" name="email" id="email">
+</div>
+
+<div class="col-md-4">
+<button class="button btn-success" >Save</button>
+</div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div class="container">
+<div class="table-responsive">
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Name</th>
+<th>Email</th>
+</thead>
+<tbody>
+<tr *ngFor="let contact of ara">
+<td>{{contact.name}}</td>
+<td>{{contact.email}}</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+
