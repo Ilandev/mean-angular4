@@ -6,10 +6,12 @@ let path = require('path');
 var mongojs = require('mongojs');
 var mclient = require('mongodb').MongoClient;
 
+
 //var url = 'mongodb://Ilankumaran:123456@ds127993.mlab.com:27993/meanstack-ilan?authMechanism=SCRAM-SHA-1';
 //var db = mongojs(url,['contact'],{authMechanism: 'ScramSHA1'});
 
-
+app.use(bodyparser.urlencoded({extended:false}));
+app.use(bodyparser.json());
 app.set('views',path.join(__dirname,'views'));
 app.set('view engine',ejs);
 app.engine('html',require('ejs').renderFile);
@@ -30,16 +32,31 @@ mclient.connect('mongodb://Ilankumaran:123456@ds127993.mlab.com:27993/meanstack-
 		 console.log(arrr);
 	res.json(arrr);
 	});
+});
+});
 	
 	
-	
-	
-	//res.json(obj);
-})	
-	//db.contact.find((err,resu)=>{
-		//res.json(resu);
-		//res.end('gg'+resu);
-	//})
-	
-})
+	app.post('/addContact',(req,res)=>{
+		console.log(req.body);
+		var db = '';
+mclient.connect('mongodb://Ilankumaran:123456@ds127993.mlab.com:27993/meanstack-ilan',(err,database)=>{
+	db = database;
+	 db.collection('contact').insert(req.body,(err,doc)=>{
+		if(err){
+			console.log(err);
+res.json({success:'0'});			
+		}
 
+else{
+	console.log('success');
+	console.log(doc);
+	res.json([{success:'1'}]);
+}			
+	 })
+	})
+	});
+	
+	
+	
+	
+	
