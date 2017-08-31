@@ -6,5 +6,9 @@
    "/addContact": {
     "target": "http://localhost:3000",
     "secure": false
+  },
+  "/getOne":{
+    "target": "http://localhost:3000",
+    "secure": false
   }
 }

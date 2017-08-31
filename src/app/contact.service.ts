@@ -9,7 +9,7 @@ import 'rxjs/add/operator/toPromise';
 export class ContactService {
 
   constructor(private http: Http) {
-	  
+
 	  }
 getContact(){
 	console.log('request came');
@@ -18,5 +18,9 @@ getContact(){
 addContact(body)
 {
 	return this.http.post('http://localhost:3000/addcontact',body).map((resp)=>resp.json());
+}
+editcon(id)
+{
+return this.http.get('http://localhost:3000/getOne?id='+id).map((resp)=>resp.json());
 }
 }

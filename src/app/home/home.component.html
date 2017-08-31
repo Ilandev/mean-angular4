@@ -1,19 +1,10 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<router-outlet>
-<div style="text-align:center">
-  <h1>
-Contact {{title}}
-  </h1>
-
-</div>
-<h2></h2>
 <div class="container">
 <div class="jumbotron">
 <div class="row">
 
 <div class="col-md-4">
 <label for="name">Name</label>
-<input id="name" type="text" name="name"  [(ngModel)]="uname">
+<input id="name" type="text" name="name" [(ngModel)]="uname">
 </div>
 
 <div class="col-md-4">
@@ -29,22 +20,45 @@ Contact {{title}}
 </div>
 <div class="clearfix"></div>
 <div class="container">
+<div class="col-md-12">
+
 <div class="table-responsive">
 <table class="table table-striped">
 <thead>
 <tr>
+<div class="col-md-2">
 <th>Name</th>
+</div>
+<div class="col-md-6">
 <th>Email</th>
+</div>
+<div class="col-md-4">
+<th>Action</th>
+</div>
 </thead>
 <tbody>
 <tr *ngFor="let contact of ara">
+<div class="col-md-2">
 <td>{{contact.name}}</td>
+</div>
+<div class="col-md-6">
 <td>{{contact.email}}</td>
+</div>
+<div class="col-md-4">
+<div class="col-md-2">
+
+<button (click) = "editContact(contact._id)">Edit</button>
+</div>
+<div class="col-md-2">
+<button (click) = "deleteContact(contact._id)">Delete</button>
+</div>
+</div>
 </tr>
 </tbody>
 </table>
+</div>
+
 
 
 </div>
 </div>
-</router-outlet>

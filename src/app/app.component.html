@@ -1,9 +1,10 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<router-outlet></router-outlet>
 <div style="text-align:center">
   <h1>
 Contact {{title}}
   </h1>
-  
+
 </div>
 <h2></h2>
 <div class="container">
@@ -54,10 +55,11 @@ Contact {{title}}
 </div>
 <div class="col-md-4">
 <div class="col-md-2">
-<a href="">Edit</a>
+
+<button (click) = "editContact(contact._id)">Edit</button>
 </div>
 <div class="col-md-2">
-<a href="">Delete</a>
+<button (click) = "deleteContact(contact._id)">Delete</button>
 </div>
 </div>
 </tr>
@@ -66,6 +68,6 @@ Contact {{title}}
 </div>
 
 
-</div>
-</div>
 
+</div>
+</div>

@@ -12,6 +12,8 @@ var mclient = require('mongodb').MongoClient;
 
 app.use(bodyparser.urlencoded({extended:false}));
 app.use(bodyparser.json());
+
+app.use( require('request-param')() )
 app.set('views',path.join(__dirname,'views'));
 app.set('view engine',ejs);
 app.engine('html',require('ejs').renderFile);
@@ -34,8 +36,8 @@ mclient.connect('mongodb://Ilankumaran:123456@ds127993.mlab.com:27993/meanstack-
 	});
 });
 });
-	
-	
+
+
 	app.post('/addContact',(req,res)=>{
 		console.log(req.body);
 		var db = '';
@@ -44,19 +46,42 @@ mclient.connect('mongodb://Ilankumaran:123456@ds127993.mlab.com:27993/meanstack-
 	 db.collection('contact').insert(req.body,(err,doc)=>{
 		if(err){
 			console.log(err);
-res.json({success:'0'});			
+res.json({success:'0'});
 		}
 
 else{
 	console.log('success');
 	console.log(doc);
 	res.json([{success:'1'}]);
-}			
+}
 	 })
 	})
 	});
-	
-	
-	
-	
-	
+
+	app.get('/getOne',(req,res)=>{
+		var db = '';
+		mclient.connect('mongodb://Ilankumaran:123456@ds127993.mlab.com:27993/meanstack-ilan',(err,database)=>{
+			if(err)
+			{
+			res.end('error');
+			}
+			else{
+			db = database;
+			console.log('fff')
+			console.log(req.param('id'));
+			var ObjectID = require("bson-objectid");
+
+			db.collection('contact').find({"_id":ObjectID(req.param('id'))}).toArray((err,dat)=>{
+				if(err)
+				console.log(err);
+				else{
+			console.log(dat)
+			res.json(dat);		
+				}
+
+
+			});
+
+		}
+		})
+	})
