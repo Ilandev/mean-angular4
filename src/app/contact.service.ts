@@ -23,4 +23,13 @@ editcon(id)
 {
 return this.http.get('http://localhost:3000/getOne?id='+id).map((resp)=>resp.json());
 }
+
+updateInfo(body)
+{
+return this.http.post('http://localhost:3000/updateInfo',body).map((resp)=>resp.json());
+}
+deleteContact(id)
+{
+return this.http.get('http://localhost:3000/deleteContact?id='+id).map((resp)=>resp.json());
+}
 }

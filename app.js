@@ -76,7 +76,7 @@ else{
 				console.log(err);
 				else{
 			console.log(dat)
-			res.json(dat);		
+			res.json(dat);
 				}
 
 
@@ -85,3 +85,54 @@ else{
 		}
 		})
 	})
+
+	app.post('/updateInfo',(req,res)=>{
+		console.log('body')
+		var db = '';
+mclient.connect('mongodb://Ilankumaran:123456@ds127993.mlab.com:27993/meanstack-ilan',(err,database)=>{
+db = database;
+var ObjectID = require("bson-objectid");
+ db.collection('contact').updateOne({"_id":ObjectID(req.body.id)},{name:req.body.name,email:req.body.email},(err,doc)=>{
+	if(err){
+		console.log(err);
+res.json({success:'0'});
+	}
+
+else{
+console.log('success');
+console.log(doc);
+res.json([{success:'1'}]);
+}
+ })
+})
+
+	})
+
+
+app.get('/deleteContact',(req,res)=>{
+	var db = '';
+	mclient.connect('mongodb://Ilankumaran:123456@ds127993.mlab.com:27993/meanstack-ilan',(err,database)=>{
+		if(err)
+		{
+		res.end('error');
+		}
+		else{
+		db = database;
+		console.log('fff')
+		console.log(req.param('id'));
+		var ObjectID = require("bson-objectid");
+
+		db.collection('contact').deleteOne({"_id":ObjectID(req.param('id'))},function(err,dat){
+			if(err)
+			console.log(err);
+			else{
+
+		res.json({success:'1'});
+			}
+
+
+		});
+
+	}
+	})
+})

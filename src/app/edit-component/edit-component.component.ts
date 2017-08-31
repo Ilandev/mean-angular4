@@ -13,7 +13,7 @@ uid : string;
 arr : any[];
 private email : string;
 private uname : string;
-  constructor(private activatedRoute: ActivatedRoute,private con :ContactService) {
+  constructor(private activatedRoute: ActivatedRoute,private con :ContactService,private router:Router) {
 
   }
 
@@ -26,8 +26,20 @@ private uname : string;
         this.uname = this.arr[0].name;
         this.email = this.arr[0].email;
         })
-
       });
   }
+
+
+updateInfo(){
+this.con.updateInfo({id:this.uid,name:this.uname,email:this.email}).subscribe(res=>{
+console.log(JSON.stringify(res));
+if(res[0].success == '1')
+{
+  this.router.navigate(['home']);
+}
+})
+
+}
+
 
 }
